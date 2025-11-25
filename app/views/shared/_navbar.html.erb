@@ -1,0 +1,31 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-felippe">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <i class="fas fa-code"></i> MyProject
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <img class="avatar" alt="avatar" src="https://ui-avatars.com/api/?name=User&background=0D6EFD&color=fff" />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Minha Conta", "#", class: "dropdown-item" %>
+              <%= link_to "Sair", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Entrar", new_user_session_path, class: "nav-link fa-bounce" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
