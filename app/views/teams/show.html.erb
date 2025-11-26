@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>My Team</h1>
+    <p>Current User: <%= @team.user.email %></p>
+    <h2><%= @team.name %></h2>
+    <h3>Cash: <%= @team.budget %></h3>
+    <% @team.players.each do |player| %>
+      <p><%= player.name %> - Position: <%= player.position %> - Level: <%= player.level %> - Red Cards: <%= player.red_card %> - Yellow Cards: <%= player.yellow_card %> - Injuried: <%= player.injury %></p>
+    <% end %>
+    <%= link_to "Back to Teams", teams_path %>
+</div>
