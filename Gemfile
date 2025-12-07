@@ -42,3 +42,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+group :production do
+  gem "rails_serve_static_assets"
+end
