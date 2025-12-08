@@ -26,9 +26,9 @@ class Team < ApplicationRecord
   end
 
   def create_campaign
-    campaign = Campaign.create!(name: "#{self.name.capitalize} Campaign")
-    self.campaign = campaign
-    create_rival_teams(campaign)
+    @campaign = Campaign.create!(name: "#{self.name.capitalize} Campaign")
+    self.campaign = @campaign
+    create_rival_teams(@campaign)
     self.create_players_for_team
     campaign
   end
@@ -40,8 +40,8 @@ class Team < ApplicationRecord
         campaign: campaign,
         budget: rand(30_000..60_000)
       )
-      rival_team.create_players_for_team
       rival_team.save!
+      rival_team.create_players_for_team
     end
   end
 
@@ -64,7 +64,13 @@ class Team < ApplicationRecord
       'Wood', 'West', 'Webb', 'Wolf', 'York'
     ]
 
-    "#{first_names.sample} #{last_names.sample}"
+    loop do
+      name = "#{first_names.sample} #{last_names.sample}"
+      # Ensure the player name is unique within the campaign
+      unless Player.joins(:team).where(teams: { campaign_id: self.campaign_id }, players: { name: name }).exists?
+        return name
+      end
+    end
   end
 
   def generate_team_name
@@ -73,6 +79,12 @@ class Team < ApplicationRecord
     prefixes = ['Soccer', 'Athletic', 'Racing', 'Knights', 'Games', 'Premier', 'Olympique', 'Orient']
     suffixes = ['Club', 'Association', 'Union', 'Sports', 'Union']
 
-    "#{fisrt_names.sample} #{last_names.sample} #{prefixes.sample} #{suffixes.sample}"
+    loop do
+      name = "#{fisrt_names.sample} #{last_names.sample} #{prefixes.sample} #{suffixes.sample}"
+      # Ensure the team name is unique within the campaign
+      unless Team.where(campaign_id: self.campaign_id, name: name).exists?
+        return name
+      end
+    end
   end
 end

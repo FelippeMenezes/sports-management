@@ -1,22 +1,32 @@
 class TeamsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @teams = current_user.teams
+    # Pundit policy scope
+    @teams = policy_scope(Team)
   end
 
   def show
-    @team = current_user.teams.find(params[:id])
-    @rival_teams = Team.where(user_id: nil)
+    @team = Team.find(params[:id])
+    # Pundit authorization
+    authorize @team
+    # Search for rival teams in the same campaign excluding the current team
+    @rival_teams = Team.where(campaign: @team.campaign).where.not(id: @team.id)
   end
 
   def new
     @team = Team.new
+    # Pundit authorization
+    authorize @team
   end
 
   def create
     @team = Team.new(team_params)
+    # Associate the team with the current user
     @team.user = current_user
+    # Create associated campaign for the team
     @team.campaign = @team.create_campaign
+    # Pundit authorization
+    authorize @team
     if @team.save
       redirect_to team_path(@team)
     else

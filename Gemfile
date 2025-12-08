@@ -23,6 +23,7 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "autoprefixer-rails"
 gem "devise"
+gem "pundit"
 
 # Variáveis de ambiente
 gem "dotenv-rails", groups: [:development, :test]
