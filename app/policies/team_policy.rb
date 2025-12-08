@@ -8,12 +8,17 @@ class TeamPolicy < ApplicationPolicy
   end
 
   def show?
-    # Only the owner can view the team
+    # Only the team owner can view the team
     record.user == user
   end
 
   def create?
     # Any authenticated user can create a team
     true
+  end
+
+  def dashboard?
+    # Only the team owner can view the dashboard. We can reuse the show? logic.
+    show?
   end
 end

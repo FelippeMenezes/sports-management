@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
     # Pundit authorization
     authorize @team
     if @team.save
-      redirect_to team_path(@team)
+      redirect_to dashboard_team_path(@team), notice: "Team was successfully created."
     else
       render :new, status: :unprocessable_content
     end

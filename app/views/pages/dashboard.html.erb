@@ -1,0 +1,14 @@
+<div class="container">
+    <h1>Dashboard do <%= @team.name %></h1>
+
+    <h2>Estatísticas</h2>
+    <ul>
+    <li>Partidas Jogadas: </li>
+    <li>Campeonatos Vencidos: </li>
+    </ul>
+
+    <%= link_to 'Jogar um Amistoso', "#", class: "btn btn-outline-primary" %>
+    <%= link_to 'Começar um Campeonato', "#", class: "btn btn-outline-success" %>
+    <%= link_to @team.name, team_path(@team), class: "btn btn-outline-warning" %>
+    <%= link_to "Back to Teams", teams_path, class: "btn btn-outline-secondary"%>
+</div>
