@@ -21,16 +21,19 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
-    # Associate the team with the current user
-    @team.user = current_user
-    # Create associated campaign for the team
-    @team.campaign = @team.create_campaign
     # Pundit authorization
     authorize @team
-    if @team.save
-      redirect_to dashboard_team_path(@team), notice: "Team was successfully created."
+    @team.user = current_user
+    @team.budget = 100_000
+
+    # Call the service. The service will create the campaign, associate it with the team,
+    # save the team, and create rivals and players.
+    @campaign = CampaignCreatorService.new(@team).call
+
+    if @campaign.persisted? && @team.persisted?
+      redirect_to dashboard_team_path(@team), notice: 'Team and Campaign were successfully created.'
     else
-      render :new, status: :unprocessable_content
+      render :new, status: :unprocessable_entity
     end
   end
 
