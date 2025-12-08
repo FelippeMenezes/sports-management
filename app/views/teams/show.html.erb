@@ -1,10 +1,16 @@
 <div class="container">
   <h1>My Team</h1>
-    <p>Current User: <%= @team.user.email %></p>
-    <h2><%= @team.name %></h2>
-    <h3>Cash: <%= @team.budget %></h3>
-    <% @team.players.each do |player| %>
-      <p><%= player.name %> - Position: <%= player.position %> - Level: <%= player.level %> - Red Cards: <%= player.red_card %> - Yellow Cards: <%= player.yellow_card %> - Injuried: <%= player.injury %></p>
-    <% end %>
-    <%= link_to "Back to Teams", teams_path %>
+  <p>Current User: <%= @team.user.email %></p>
+  <h2><%= @team.name %></h2>
+  <h3>Cash: <%= @team.budget %></h3>
+  <% @team.players.each do |player| %>
+    <p><%= player.name %> - Position: <%= player.position %> - Level: <%= player.level %> - Red Cards: <%= player.red_card %> - Yellow Cards: <%= player.yellow_card %> - Injuried: <%= player.injury %></p>
+  <% end %>
+  <h2>Rival Teams</h2>
+  <% @rival_teams.each do |rival_team| %>
+    <p><%= rival_team.name %></p>
+    <p>Campaign: <%= rival_team.campaign.name %></p>
+  <% end %>
+
+  <%= link_to "Back to Teams", teams_path %>
 </div>
