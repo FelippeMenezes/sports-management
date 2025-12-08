@@ -44,6 +44,12 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# Testing framework and factories
+group :development, :test do
+  gem "rspec-rails", "~> 6.1.0"
+  gem "factory_bot_rails"
+end
+
 group :production do
   gem "rails_serve_static_assets"
 end
