@@ -1,8 +1,9 @@
-# Sports Management
+Sports Management
 
 This is a sports management project developed with Ruby on Rails, designed to simulate the creation and management of soccer campaigns. The application uses background processing with **Sidekiq** and **Redis** to provide a smooth user experience during time-consuming operations, such as creating a new campaign with multiple teams and players.
 
----
+✨ Features
+Core Functionality
 
 ## ✨ Key Features
 
@@ -13,7 +14,7 @@ This is a sports management project developed with Ruby on Rails, designed to si
 - **Real-time Progress Bar:** The user tracks the status of the campaign creation through a progress bar that is dynamically updated via **StimulusJS** and **Sidekiq-Status**.
 - **Access Control:** Authorization based on business rules with **Pundit**.
 
----
+Automatic Player Generation: Each team is populated with random players with distinct positions and skill levels.
 
 ## 🚀 Technologies Used
 
@@ -40,7 +41,7 @@ This is a sports management project developed with Ruby on Rails, designed to si
 - **Debugging:** `debug`, `pry-byebug`, `pry-rails`
 - **Testing:** RSpec and Factory Bot
 
----
+Ruby: 3.1.4
 
 ## ⚙️ Local Environment Setup
 
@@ -91,25 +92,3 @@ This is a sports management project developed with Ruby on Rails, designed to si
     ```
 
 You can now access the application at `http://localhost:3000`.
-
----
-
-## ☁️ Deployment
-
-This project is configured for continuous deployment on the **Render.com** platform (free plan).
-
-### Services Used
-- **Web Service:** `Ruby` environment.
-- **Database:** `PostgreSQL`.
-
-### Configuration on Render
-- **Build Command:** `./render-build.sh`
-- **Start Command:** `bundle exec rails server`
-
-### Required Environment Variables
-The following environment variables must be configured in the Render web service:
-- `DATABASE_URL`: Automatically provided by Render when connecting to the internal PostgreSQL service.
-- `RAILS_MASTER_KEY`: Contents of the `config/master.key` file.
-- `RAILS_SERVE_STATIC_FILES`: `true`
-
-The `render-build.sh` script handles dependency installation, asset pre-compilation, and database migration on each deploy.
