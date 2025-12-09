@@ -1,114 +1,115 @@
 # Sports Management
 
-Este é um projeto de gerenciamento esportivo desenvolvido com Ruby on Rails, projetado para simular a criação e gestão de campanhas de futebol. A aplicação utiliza processamento em segundo plano com **Sidekiq** e **Redis** para oferecer uma experiência de usuário fluida durante operações demoradas, como a criação de uma nova campanha com múltiplos times e jogadores.
+This is a sports management project developed with Ruby on Rails, designed to simulate the creation and management of soccer campaigns. The application uses background processing with **Sidekiq** and **Redis** to provide a smooth user experience during time-consuming operations, such as creating a new campaign with multiple teams and players.
 
 ---
 
-## ✨ Funcionalidades Principais
+## ✨ Key Features
 
-- **Autenticação de Usuários:** Sistema completo de cadastro e login com **Devise**.
-- **Criação de Campanhas:** Geração de um time para o usuário e múltiplos times rivais controlados pela IA.
-- **Geração Automática de Jogadores:** Cada time é populado com jogadores gerados aleatoriamente, com posições e níveis distintos.
-- **Processamento em Segundo Plano:** A criação de campanhas, uma tarefa pesada, é executada como um job em background com **Sidekiq**, evitando que a interface do usuário trave.
-- **Barra de Progresso em Tempo Real:** O usuário acompanha o status da criação da campanha através de uma barra de progresso que é atualizada dinamicamente via **StimulusJS** e **Sidekiq-Status**.
-- **Controle de Acesso:** Autorização baseada em regras de negócio com **Pundit**.
+- **User Authentication:** Complete registration and login system with **Devise**.
+- **Campaign Creation:** Generation of a team for the user and multiple rival teams controlled by the AI.
+- **Automatic Player Generation:** Each team is populated with randomly generated players, with distinct positions and levels.
+- **Background Processing:** Campaign creation, a heavy task, is executed as a background job with **Sidekiq**, preventing the user interface from freezing.
+- **Real-time Progress Bar:** The user tracks the status of the campaign creation through a progress bar that is dynamically updated via **StimulusJS** and **Sidekiq-Status**.
+- **Access Control:** Authorization based on business rules with **Pundit**.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Technologies Used
 
 ### Backend
 - **Ruby:** `3.1.4`
 - **Rails:** `~> 7.1.5`
-- **Banco de Dados:** PostgreSQL (`pg` gem)
-- **Servidor Web:** Puma
-- **Jobs em Background:** Sidekiq
-- **Fila de Jobs:** Redis
-- **Monitoramento de Jobs:** Sidekiq-Status
-- **Autenticação:** Devise
-- **Autorização:** Pundit
+- **Database:** PostgreSQL (`pg` gem)
+- **Web Server:** Puma
+- **Background Jobs:** Sidekiq
+- **Job Queue:** Redis
+- **Job Monitoring:** Sidekiq-Status
+- **Authentication:** Devise
+- **Authorization:** Pundit
 
 ### Frontend
-- **JavaScript Framework:** Hotwire (Turbo e Stimulus)
- - **Gerenciador de Pacotes JS:** Importmap
-- **Framework CSS:** Bootstrap `~> 5.3` com Sass (`sassc-rails`)
-- **Ícones:** Font Awesome
-- **Formulários:** Simple Form
+- **JavaScript Framework:** Hotwire (Turbo and Stimulus)
+ - **JS Package Manager:** Importmap
+- **CSS Framework:** Bootstrap `~> 5.3` with Sass (`sassc-rails`)
+- **Icons:** Font Awesome
+- **Forms:** Simple Form
 
-### Desenvolvimento e Testes
-- **Variáveis de Ambiente:** `dotenv-rails`
+- **Development and Testing**
+- **Environment Variables:** `dotenv-rails`
 - **Debugging:** `debug`, `pry-byebug`, `pry-rails`
-- **Testes:** RSpec e Factory Bot
+- **Testing:** RSpec and Factory Bot
 
 ---
 
-## ⚙️ Configuração do Ambiente Local
+## ⚙️ Local Environment Setup
 
-### Pré-requisitos
+### Prerequisites
 - **Ruby** na versão `3.1.4`. Recomenda-se o uso de um gerenciador de versões como `rbenv` ou `asdf`.
+- **Ruby** version `3.1.4`. It is recommended to use a version manager like `rbenv` or `asdf`.
 - **Bundler**
-- **PostgreSQL** instalado e rodando.
-- **Redis** instalado e rodando.
+- **PostgreSQL** installed and running.
+- **Redis** installed and running.
 
-### Passos para Instalação
+### Installation Steps
 
-1.  **Clone o repositório:**
+1.  **Clone the repository:**
     ```bash
     git clone https://github.com/FelippeMenezes/sports-management.git
     cd sports-management
     ```
 
-2.  **Instale as dependências do Ruby:**
+2.  **Install Ruby dependencies:**
     ```bash
     bundle install
     ```
 
-3.  **Configure o banco de dados PostgreSQL:**
+3.  **Set up the PostgreSQL database:**
     ```bash
     rails db:create
     rails db:migrate
     ```
 
-4.  **Inicie os serviços em terminais separados:**
+4.  **Start the services in separate terminals:**
 
-    Para que a aplicação funcione corretamente, você precisa iniciar **três processos** em **três terminais diferentes**:
+    For the application to work correctly, you need to start **three processes** in **three different terminals**:
 
-    - **Terminal 1: Inicie o Redis**
-      _**Nota:** Se você instalou o Redis usando `brew` (macOS) ou `apt` (Linux) e o configurou como um serviço que inicia com o sistema, ele já deve estar rodando em segundo plano. Nesse caso, você pode pular este passo e precisará de apenas dois terminais._
+    - **Terminal 1: Start Redis**
+      _**Note:** If you installed Redis using `brew` (macOS) or `apt` (Linux) and configured it as a service that starts with the system, it should already be running in the background. In that case, you can skip this step and will only need two terminals._
       ```bash
       redis-server
       ```
 
-    - **Terminal 2: Inicie o Sidekiq Worker** para processar os jobs:
+    - **Terminal 2: Start the Sidekiq Worker** to process jobs:
       ```bash
       bundle exec sidekiq
       ```
 
-    - **Terminal 3: Inicie o servidor Rails:**
+    - **Terminal 3: Start the Rails server:**
     ```bash
     rails s
     ```
 
-Agora você pode acessar a aplicação em `http://localhost:3000`.
+You can now access the application at `http://localhost:3000`.
 
 ---
 
-## ☁️ Deploy (Hospedagem)
+## ☁️ Deployment
 
-Este projeto está configurado para deploy contínuo na plataforma **Render.com** (plano gratuito).
+This project is configured for continuous deployment on the **Render.com** platform (free plan).
 
-### Serviços Utilizados
-- **Web Service:** Ambiente `Ruby`.
+### Services Used
+- **Web Service:** `Ruby` environment.
 - **Database:** `PostgreSQL`.
 
-### Configuração na Render
+### Configuration on Render
 - **Build Command:** `./render-build.sh`
 - **Start Command:** `bundle exec rails server`
 
-### Variáveis de Ambiente Necessárias
-As seguintes variáveis de ambiente devem ser configuradas no serviço web da Render:
-- `DATABASE_URL`: Fornecida automaticamente pela Render ao conectar com o serviço de PostgreSQL interno.
-- `RAILS_MASTER_KEY`: Conteúdo do arquivo `config/master.key`.
+### Required Environment Variables
+The following environment variables must be configured in the Render web service:
+- `DATABASE_URL`: Automatically provided by Render when connecting to the internal PostgreSQL service.
+- `RAILS_MASTER_KEY`: Contents of the `config/master.key` file.
 - `RAILS_SERVE_STATIC_FILES`: `true`
 
-O script `render-build.sh` cuida da instalação das dependências, pré-compilação dos assets e migração do banco de dados a cada deploy.
+The `render-build.sh` script handles dependency installation, asset pre-compilation, and database migration on each deploy.
