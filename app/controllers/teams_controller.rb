@@ -20,26 +20,20 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
-    # Pundit authorization
+    # 1. We create a Team instance just for Pundit authorization.
+    @team = Team.new(team_params.merge(user: current_user))
     authorize @team
-    @team.user = current_user
-    @team.budget = 100_000
-
-    # Call the service. The service will create the campaign, associate it with the team,
-    # save the team, and create rivals and players.
-    @campaign = CampaignCreatorService.new(@team).call
-
-    if @campaign.persisted? && @team.persisted?
-      redirect_to dashboard_team_path(@team), notice: 'Team and Campaign were successfully created.'
-    else
-      render :new, status: :unprocessable_entity
-    end
+    # 2. We enqueue the job with the user data and team parameters.
+    #    The `to_h` method converts the parameters to a Hash, which is serializable.
+    job_id = CampaignCreationJob.perform_later(current_user.id, team_params.to_h).provider_job_id
+    # 3. We IMMEDIATELY redirect to the progress page.
+    #    The response to the browser is instant. The job will handle the creation in the background.
+    redirect_to job_progress_path(job_id: job_id)
   end
 
   private
 
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, :number_of_teams)
   end
 end

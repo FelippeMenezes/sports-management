@@ -1,41 +1,54 @@
 # Sports Management
 
-Este é um projeto de gerenciamento esportivo desenvolvido com Ruby on Rails.
+Este é um projeto de gerenciamento esportivo desenvolvido com Ruby on Rails, projetado para simular a criação e gestão de campanhas de futebol. A aplicação utiliza processamento em segundo plano com **Sidekiq** e **Redis** para oferecer uma experiência de usuário fluida durante operações demoradas, como a criação de uma nova campanha com múltiplos times e jogadores.
 
 ---
 
-## 🚀 Tecnologias e Dependências
+## ✨ Funcionalidades Principais
 
-### Core
+- **Autenticação de Usuários:** Sistema completo de cadastro e login com **Devise**.
+- **Criação de Campanhas:** Geração de um time para o usuário e múltiplos times rivais controlados pela IA.
+- **Geração Automática de Jogadores:** Cada time é populado com jogadores gerados aleatoriamente, com posições e níveis distintos.
+- **Processamento em Segundo Plano:** A criação de campanhas, uma tarefa pesada, é executada como um job em background com **Sidekiq**, evitando que a interface do usuário trave.
+- **Barra de Progresso em Tempo Real:** O usuário acompanha o status da criação da campanha através de uma barra de progresso que é atualizada dinamicamente via **StimulusJS** e **Sidekiq-Status**.
+- **Controle de Acesso:** Autorização baseada em regras de negócio com **Pundit**.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+### Backend
 - **Ruby:** `3.1.4`
 - **Rails:** `~> 7.1.5`
 - **Banco de Dados:** PostgreSQL (`pg` gem)
 - **Servidor Web:** Puma
+- **Jobs em Background:** Sidekiq
+- **Fila de Jobs:** Redis
+- **Monitoramento de Jobs:** Sidekiq-Status
+- **Autenticação:** Devise
+- **Autorização:** Pundit
 
 ### Frontend
-- **Framework CSS:** Bootstrap `~> 5.3`
-- **Pré-processador CSS:** Sass (`sassc-rails`)
-- **Ícones:** Font Awesome `~> 6.1`
-- **JavaScript:** Importmap para gerenciamento de pacotes, com Turbo e Stimulus para uma experiência de usuário moderna e reativa.
+- **JavaScript Framework:** Hotwire (Turbo e Stimulus)
+ - **Gerenciador de Pacotes JS:** Importmap
+- **Framework CSS:** Bootstrap `~> 5.3` com Sass (`sassc-rails`)
+- **Ícones:** Font Awesome
+- **Formulários:** Simple Form
 
-### Autenticação e Formulários
-- **Autenticação:** Devise para gerenciamento de usuários.
-- **Formulários:** Simple Form para criação de formulários elegantes e eficientes.
-
-### Ambiente de Desenvolvimento
-- **Variáveis de Ambiente:** `dotenv-rails` para gerenciar chaves e configurações.
-- **Debugging:** `debug`, `pry-byebug` e `pry-rails`.
+### Desenvolvimento e Testes
+- **Variáveis de Ambiente:** `dotenv-rails`
+- **Debugging:** `debug`, `pry-byebug`, `pry-rails`
+- **Testes:** RSpec e Factory Bot
 
 ---
 
 ## ⚙️ Configuração do Ambiente Local
 
-Siga os passos abaixo para rodar o projeto na sua máquina.
-
 ### Pré-requisitos
 - **Ruby** na versão `3.1.4`. Recomenda-se o uso de um gerenciador de versões como `rbenv` ou `asdf`.
 - **Bundler**
 - **PostgreSQL** instalado e rodando.
+- **Redis** instalado e rodando.
 
 ### Passos para Instalação
 
@@ -45,20 +58,35 @@ Siga os passos abaixo para rodar o projeto na sua máquina.
     cd sports-management
     ```
 
-2.  **Instale as dependências:**
+2.  **Instale as dependências do Ruby:**
     ```bash
     bundle install
     ```
 
-3.  **Configure o banco de dados:**
+3.  **Configure o banco de dados PostgreSQL:**
     ```bash
     rails db:create
     rails db:migrate
     ```
 
-4.  **Inicie o servidor local:**
+4.  **Inicie os serviços em terminais separados:**
+
+    Para que a aplicação funcione corretamente, você precisa iniciar **três processos** em **três terminais diferentes**:
+
+    - **Terminal 1: Inicie o Redis**
+      _**Nota:** Se você instalou o Redis usando `brew` (macOS) ou `apt` (Linux) e o configurou como um serviço que inicia com o sistema, ele já deve estar rodando em segundo plano. Nesse caso, você pode pular este passo e precisará de apenas dois terminais._
+      ```bash
+      redis-server
+      ```
+
+    - **Terminal 2: Inicie o Sidekiq Worker** para processar os jobs:
+      ```bash
+      bundle exec sidekiq
+      ```
+
+    - **Terminal 3: Inicie o servidor Rails:**
     ```bash
-    rails server
+    rails s
     ```
 
 Agora você pode acessar a aplicação em `http://localhost:3000`.

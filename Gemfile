@@ -28,6 +28,10 @@ gem "pundit"
 # Variáveis de ambiente
 gem "dotenv-rails", groups: [:development, :test]
 
+# Background processing
+gem 'sidekiq'
+gem 'sidekiq-status'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem "pry-byebug"
