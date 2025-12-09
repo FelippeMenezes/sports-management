@@ -1,116 +1,94 @@
 Sports Management
 
-A sports management simulation built with Ruby on Rails, designed to generate and manage football campaigns. This project uses Sidekiq and Redis to handle long-running operations in the background, ensuring a smooth and responsive user experience.
+This is a sports management project developed with Ruby on Rails, designed to simulate the creation and management of soccer campaigns. The application uses background processing with **Sidekiq** and **Redis** to provide a smooth user experience during time-consuming operations, such as creating a new campaign with multiple teams and players.
 
 ✨ Features
 Core Functionality
 
-User Authentication: Full sign-up and login system powered by Devise.
+## ✨ Key Features
 
-Campaign Creation: Generates a main team for the user along with multiple AI-controlled rival teams.
+- **User Authentication:** Complete registration and login system with **Devise**.
+- **Campaign Creation:** Generation of a team for the user and multiple rival teams controlled by the AI.
+- **Automatic Player Generation:** Each team is populated with randomly generated players, with distinct positions and levels.
+- **Background Processing:** Campaign creation, a heavy task, is executed as a background job with **Sidekiq**, preventing the user interface from freezing.
+- **Real-time Progress Bar:** The user tracks the status of the campaign creation through a progress bar that is dynamically updated via **StimulusJS** and **Sidekiq-Status**.
+- **Access Control:** Authorization based on business rules with **Pundit**.
 
 Automatic Player Generation: Each team is populated with random players with distinct positions and skill levels.
 
-Background Job Processing: Campaign creation runs as a background job using Sidekiq to avoid UI freezing.
+## 🚀 Technologies Used
 
-Real-Time Progress Tracking: Users can follow the creation progress through a dynamic progress bar updated via StimulusJS and Sidekiq-Status.
+### Backend
+- **Ruby:** `3.1.4`
+- **Rails:** `~> 7.1.5`
+- **Database:** PostgreSQL (`pg` gem)
+- **Web Server:** Puma
+- **Background Jobs:** Sidekiq
+- **Job Queue:** Redis
+- **Job Monitoring:** Sidekiq-Status
+- **Authentication:** Devise
+- **Authorization:** Pundit
 
-Access Control: Business-rule-based authorization with Pundit.
+### Frontend
+- **JavaScript Framework:** Hotwire (Turbo and Stimulus)
+ - **JS Package Manager:** Importmap
+- **CSS Framework:** Bootstrap `~> 5.3` with Sass (`sassc-rails`)
+- **Icons:** Font Awesome
+- **Forms:** Simple Form
 
-🚀 Tech Stack
-Backend
+- **Development and Testing**
+- **Environment Variables:** `dotenv-rails`
+- **Debugging:** `debug`, `pry-byebug`, `pry-rails`
+- **Testing:** RSpec and Factory Bot
 
 Ruby: 3.1.4
 
-Rails: ~> 7.1.5
+## ⚙️ Local Environment Setup
 
-Database: PostgreSQL
+### Prerequisites
+- **Ruby** na versão `3.1.4`. Recomenda-se o uso de um gerenciador de versões como `rbenv` ou `asdf`.
+- **Ruby** version `3.1.4`. It is recommended to use a version manager like `rbenv` or `asdf`.
+- **Bundler**
+- **PostgreSQL** installed and running.
+- **Redis** installed and running.
 
-Web Server: Puma
+### Installation Steps
 
-Background Jobs: Sidekiq
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/FelippeMenezes/sports-management.git
+    cd sports-management
+    ```
 
-Job Queue: Redis
+2.  **Install Ruby dependencies:**
+    ```bash
+    bundle install
+    ```
 
-Job Monitoring: Sidekiq-Status
+3.  **Set up the PostgreSQL database:**
+    ```bash
+    rails db:create
+    rails db:migrate
+    ```
 
-Authentication: Devise
+4.  **Start the services in separate terminals:**
 
-Authorization: Pundit
+    For the application to work correctly, you need to start **three processes** in **three different terminals**:
 
-Frontend
+    - **Terminal 1: Start Redis**
+      _**Note:** If you installed Redis using `brew` (macOS) or `apt` (Linux) and configured it as a service that starts with the system, it should already be running in the background. In that case, you can skip this step and will only need two terminals._
+      ```bash
+      redis-server
+      ```
 
-Hotwire: Turbo & Stimulus
+    - **Terminal 2: Start the Sidekiq Worker** to process jobs:
+      ```bash
+      bundle exec sidekiq
+      ```
 
-Package Management: Importmap
+    - **Terminal 3: Start the Rails server:**
+    ```bash
+    rails s
+    ```
 
-CSS Framework: Bootstrap ~> 5.3 (with Sass via sassc-rails)
-
-Icons: Font Awesome
-
-Forms: Simple Form
-
-Development & Testing
-
-Environment Variables: dotenv-rails
-
-Debugging: debug, pry-byebug, pry-rails
-
-Testing Tools: RSpec, Factory Bot
-
-⚙️ Local Setup
-Prerequisites
-
-Ruby 3.1.4
-
-Bundler
-
-PostgreSQL running locally
-
-Redis running locally
-
-Installation
-
-Clone the repository
-
-git clone https://github.com/FelippeMenezes/sports-management.git
-cd sports-management
-
-
-Install dependencies
-
-bundle install
-
-
-Set up the database
-
-rails db:create
-rails db:migrate
-
-
-Start the services
-
-Open three terminals:
-
-Terminal 1 – Redis
-
-redis-server
-
-
-(Skip if Redis is already running as a system service.)
-
-Terminal 2 – Sidekiq
-
-bundle exec sidekiq
-
-
-Terminal 3 – Rails Server
-
-rails s
-
-Access the App
-
-Visit:
-
-http://localhost:3000
-
+You can now access the application at `http://localhost:3000`.
