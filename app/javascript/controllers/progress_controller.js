@@ -13,7 +13,7 @@ export default class extends Controller {
     this.checkProgress()
     this.timer = setInterval(() => {
       this.checkProgress()
-    }, 10)
+    }, 100)
   }
 
   disconnect() {
@@ -37,7 +37,7 @@ export default class extends Controller {
           // Redirect the user to the created team's dashboard
           const teamId = data.team_id || ''; // Ensures teamId is not null/undefined
           const redirectUrl = this.redirectUrlValue.replace('TEAM_ID_PLACEHOLDER', teamId);
-          setTimeout(() => { window.location.href = redirectUrl }, 500)
+          setTimeout(() => { window.location.href = redirectUrl }, 1500)
 
         } else if (data.status === 'failed') {
           clearInterval(this.timer)
