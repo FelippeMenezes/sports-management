@@ -1,8 +1,11 @@
 #!/bin/bash -e
 
-# If running the rails server then create or migrate existing database
-if [[ ( "${1}" == "./bin/rails" && "${2}" == "server" ) || ( "${1}" == "bundle" && "${3}" == "sidekiq" ) ]]; then
-  ./bin/rails db:prepare
+# In a production environment, we need to ensure the database is ready and migrated.
+# This runs for both the web and worker services.
+if [ "$RAILS_ENV" = "production" ]; then
+  echo "Production environment detected. Preparing database..."
+  bin/rails db:prepare
+  echo "Database is ready."
 fi
 
 exec "${@}"
