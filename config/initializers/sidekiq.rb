@@ -14,3 +14,14 @@ Sidekiq.configure_server do |config|
     chain.add Sidekiq::Status::ServerMiddleware, expiration: 30 * 60 # 30 minutes in seconds
   end
 end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: redis_url }
+
+  # Sidekiq-Status client-side middleware
+  config.client_middleware do |chain|
+    chain.add Sidekiq::Status::ClientMiddleware
+  end
+end
+
+
