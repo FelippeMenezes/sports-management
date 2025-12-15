@@ -23,16 +23,15 @@ if rails_env == "production"
   worker_count = Integer(ENV.fetch("WEB_CONCURRENCY") { 1 })
   if worker_count > 1
     workers worker_count
-  else
-    preload_app!
   end
+  preload_app!
 end
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
 # terminating a worker in development environments.
 worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-port ENV.fetch("PORT") { 3000 }
+bind "tcp://0.0.0.0:#{ENV.fetch("PORT") { 3000 }}"
 
 # Specifies the `environment` that Puma will run in.
 environment rails_env
