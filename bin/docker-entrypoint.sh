@@ -8,4 +8,10 @@ if [ "$RAILS_ENV" = "production" ]; then
   echo "Database is ready."
 fi
 
+# If the first argument is "sidekiq", prepend "bundle exec"
+# This allows us to run "sidekiq" as the command in our worker service on Koyeb.
+if [ "$1" = "sidekiq" ]; then
+  set -- bundle exec sidekiq "$@"
+fi
+
 exec "${@}"
