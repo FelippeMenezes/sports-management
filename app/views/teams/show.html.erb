@@ -1,5 +1,9 @@
-<div class="container">
-  <h1>My Team</h1>
+<div class="container text-white">
+  <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1>My Team</h1>
+    <%= link_to "Voltar para Dashboard", dashboard_team_path(@team), class: "btn btn-outline-light  " %>
+  </div>
+
   <p>Current User: <%= @team.user.email %></p>
   <h2><%= @team.name %></h2>
   <h3>Cash: <%= @team.budget %></h3>
@@ -11,6 +15,4 @@
     <p><%= rival_team.name %></p>
     <p>Campaign: <%= rival_team.campaign.name %></p>
   <% end %>
-
-  <%= link_to "Voltar para Dashboard", dashboard_team_path(@team), class: "btn btn-outline-warning" %>
 </div>

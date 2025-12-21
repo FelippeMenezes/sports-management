@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Create Team</h1>
+  <h1 class="text-white">Create Team</h1>
   <%= simple_form_for(@team) do |f| %>
-    <%= f.input :name %>
-    <%= f.submit %>
+    <%= f.input :name, label_html: { class: "text-white" }, input_html: { class: "text-success" }%>
+    <%= f.submit(class: "btn btn-outline-light mb-2") %>
   <% end %>
-  <%= link_to "Back to Teams", teams_path, class: "btn btn-outline-secondary"%>
+  <%= link_to "Back to Teams", teams_path, class: "btn btn-outline-light"%>
 </div>
