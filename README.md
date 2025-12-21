@@ -43,7 +43,24 @@ Automatic Player Generation: Each team is populated with random players with dis
 
 Ruby: 3.1.4
 
-## ⚙️ Local Environment Setup
+## 🐳 Docker Setup (Recommended)
+
+### Prerequisites
+- **Docker** and **Docker Compose** installed.
+
+### Installation Steps
+
+1.  **Start the services:**
+    ```bash
+    docker compose up --build
+    ```
+
+2.  **Setup the database (in a separate terminal):**
+    ```bash
+    docker compose exec web rails db:setup
+    ```
+
+## ⚙️ Local Environment Setup (Manual)
 
 ### Prerequisites
 - **Ruby** na versão `3.1.4`. Recomenda-se o uso de um gerenciador de versões como `rbenv` ou `asdf`.
