@@ -33,15 +33,18 @@ class Team < ApplicationRecord
       'Alex', 'Bill', 'Carl', 'Dave', 'Dean', 'Evan', 'Fred', 'Gary', 'Glen', 'Hugo',
       'Ivan', 'Jake', 'Joel', 'Josh', 'Kyle', 'Leon', 'Luke', 'Matt', 'Mike', 'Neil',
       'Nick', 'Owen', 'Pete', 'Rick', 'Sean', 'Seth', 'Tony', 'Troy', 'Will', 'Zack',
-      'Ben', 'Dan', 'Joe', 'Tom', 'Max', 'Sam', 'Roy', 'Leo', 'Ian', 'Cole'
+      'Ben', 'Dan', 'Joe', 'Tom', 'Max', 'Sam', 'Roy', 'Leo', 'Ian', 'Cole', 'Noa',
+      'Enzo', 'Luan', 'Gael', 'Ravi', 'Otto', 'José', 'João', 'Caio', 'Raul', 'Yuri',
+      'Juan', 'Jair', 'Tito', 'Saul', 'Iago', 'Eder', 'Igor', 'Alan'
     ]
     last_names = [
-      'Bell', 'Bond', 'Bush', 'Best', 'Bird', 'Ball', 'Cook', 'Cox', 'Cole', 'Carr',
+      'Bell', 'Bond', 'Bush', 'Best', 'Bird', 'Cruz', 'Cook', 'Cox', 'Cole', 'Carr',
       'Clay', 'Day', 'Dean', 'Dunn', 'Dye', 'Ford', 'Fox', 'Fry', 'Gray', 'Gill',
       'Hall', 'Hill', 'Hunt', 'Hart', 'Hood', 'Holt', 'King', 'Kent', 'Kerr', 'Lee',
       'Lane', 'Long', 'Law', 'Lamb', 'Lowe', 'May', 'Mann', 'Moon', 'Moss', 'Nash',
-      'Park', 'Page', 'Pope', 'Reed', 'Rose', 'Ross', 'Rice', 'Shaw', 'Snow', 'Ward',
-      'Wood', 'West', 'Webb', 'Wolf', 'York'
+      'Park', 'Page', 'Pope', 'Reed', 'Rosa', 'Ross', 'Rice', 'Shaw', 'Snow', 'Ward',
+      'Wood', 'West', 'Webb', 'Wolf', 'York', 'Braz', 'Reis', 'Lima', 'Lobo', 'Rios',
+      'Melo', 'Rosa', 'Paes', 'Pena', 'Sena', 'Mota', 'Gama', 'Lins'
     ]
 
     loop do

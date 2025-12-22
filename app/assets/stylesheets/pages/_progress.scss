@@ -1,0 +1,12 @@
+// Estilos para a página de progresso do Job
+
+.job-progress-container {
+  .card-header {
+    background-color: $white;
+    color: $success;
+  }
+
+  .progress-bar {
+    background-color: $success;
+  }
+}

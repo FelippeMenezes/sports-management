@@ -10,3 +10,7 @@
 // Pages
 @import "pages/index";
 
+.btn-outline-light:hover {
+    color: $success;
+    font-weight: 500;
+}

@@ -1,14 +1,17 @@
-<div class="container text-white">
+<div class="container text-white d-flex flex-column flex-md-row justify-content-md-between align-items-center mt-3">
+    <div class="stats mt-2">
     <h1>Dashboard do <%= @team.name %></h1>
 
     <h2>Estatísticas</h2>
     <ul>
-    <li>Partidas Jogadas: </li>
-    <li>Campeonatos Vencidos: </li>
+        <li>Partidas Jogadas: </li>
+        <li>Campeonatos Vencidos: </li>
     </ul>
-
-    <%= link_to 'Jogar um Amistoso', "#", class: "btn btn-outline-light" %>
-    <%= link_to 'Começar um Campeonato', "#", class: "btn btn-outline-light" %>
-    <%= link_to @team.name, team_path(@team), class: "btn btn-outline-light" %>
-    <%= link_to "Back to Teams", teams_path, class: "btn btn-outline-light"%>
+    </div>
+    <div class="options d-flex flex-column justify-content-center align-items-center mt-4 mt-md-0">
+        <%= link_to 'Jogar um Amistoso', "#", class: "btn btn-outline-light w-100 my-1" %>
+        <%= link_to 'Começar um Campeonato', "#", class: "btn btn-outline-light w-100 my-1" %>
+        <%= link_to @team.name, team_path(@team), class: "btn btn-outline-light w-100 my-1" %>
+        <%= link_to "Back to Teams", teams_path, class: "btn btn-outline-light w-100 my-1"%>
+    </div>
 </div>

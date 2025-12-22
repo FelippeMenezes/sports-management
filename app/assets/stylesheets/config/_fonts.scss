@@ -1,3 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;1,700&family=Kanit:ital,wght@0,400;1,800&display=swap");
+
+$body-font: "Chakra Petch", sans-serif;
+$headers-font: "Chakra Petch", sans-serif;
+
+// Override Bootstrap's default variables
+$font-family-base: $body-font;
+$headings-font-family: $headers-font;

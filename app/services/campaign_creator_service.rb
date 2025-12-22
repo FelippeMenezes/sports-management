@@ -11,6 +11,12 @@ class CampaignCreatorService
     # Define the total number of steps dynamically.
     # 1 (Starting) + 1 (create campaign) + 1 (create main team) + N (rivals) + 1 (finalize)
     @total_steps = 4 + NUMBER_OF_RIVALS
+
+    # Initialize and shuffle name components to ensure uniqueness per generation
+    @first_names = ['Cosmos', 'Nova', 'Capital', 'Solar', 'Tropical', 'Rural', 'Opera', 'Oasis',  'Mineral', 'Animal', 'Formula', 'Lava', 'Natural', 'Panda', 'Prisma', 'Zebra'].shuffle
+    @last_names = ['Elite', 'Atlas', 'Titan', 'Bravo', 'Delta', 'Popular', 'Base', 'Canal', 'Coral', 'Junior'].shuffle
+    @prefixes = ['Premier', 'Metro', 'Central', 'Social', 'Original', 'Naval', 'Principal', 'Real', 'Regular', 'Terminal'].shuffle
+    @suffixes = ['FC', 'AA', 'UA', 'CR', 'AF', 'CF', 'AC', 'RF', 'RC', 'UC'].shuffle
   end
 
   def call
@@ -63,16 +69,6 @@ class CampaignCreatorService
   end
 
   def generate_team_name(campaign)
-    first_names = ['Nova', 'York', 'Hawk', 'Bolt', 'Dune', 'Ford', 'Port', 'Lion', 'Tiger', 'Wolf']
-    last_names = ['Dynamo', 'Cross', 'Stars', 'Real', 'Eye', 'Sun', 'City', 'United']
-    prefixes = ['Soccer', 'Athletic', 'Racing', 'Knights', 'Games', 'Premier', 'Olympique', 'Orient']
-    suffixes = ['Club', 'Association', 'Union', 'Sports']
-
-    loop do
-      name = "#{first_names.sample} #{last_names.sample} #{prefixes.sample} #{suffixes.sample}"
-      unless Team.where(campaign_id: campaign.id, name: name).exists?
-        return name
-      end
-    end
+    "#{@first_names.pop} #{@last_names.pop} #{@prefixes.pop} #{@suffixes.pop}"
   end
 end
