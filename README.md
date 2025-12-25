@@ -93,6 +93,7 @@ Ruby: 3.1.4
 
 You can now access the application at `http://localhost:3000`.
 
+
 ## 🐳 Docker Setup (Recommended)
 
 ### Prerequisites
@@ -110,9 +111,16 @@ You can now access the application at `http://localhost:3000`.
     docker compose exec web rails db:setup
     ```
 
+### Resetting the Database
+
+1.  **To drop, create, migrate, and seed the database**
+    ```bash
+    docker compose run --rm web bundle exec rails db:reset
+    ```
+
 ### Running Tests
 
-To run the test suite (RSpec):
+To run the test suite (RSpec) inside the Docker container:
 
 ```bash
 docker compose run --rm web bundle exec rspec
