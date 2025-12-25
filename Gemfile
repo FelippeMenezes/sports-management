@@ -24,6 +24,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "autoprefixer-rails"
 gem "devise"
 gem "pundit"
+gem "faker"
 
 # Variáveis de ambiente
 gem "dotenv-rails", groups: [:development, :test]
@@ -46,6 +47,8 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers"
+  gem "database_cleaner-active_record"
 end
 
 # Testing framework and factories

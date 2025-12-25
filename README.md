@@ -39,7 +39,7 @@ Automatic Player Generation: Each team is populated with random players with dis
 - **Development and Testing**
 - **Environment Variables:** `dotenv-rails`
 - **Debugging:** `debug`, `pry-byebug`, `pry-rails`
-- **Testing:** RSpec and Factory Bot
+- **Testing:** RSpec, Factory Bot, Shoulda Matchers, Database Cleaner, Faker
 
 Ruby: 3.1.4
 
@@ -109,3 +109,11 @@ You can now access the application at `http://localhost:3000`.
     ```bash
     docker compose exec web rails db:setup
     ```
+
+### Running Tests
+
+To run the test suite (RSpec):
+
+```bash
+docker compose run --rm web bundle exec rspec
+```

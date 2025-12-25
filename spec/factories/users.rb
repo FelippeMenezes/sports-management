@@ -1,7 +1,8 @@
 FactoryBot.define do
-  # Define a basic user factory
   factory :user do
-    sequence(:email) { |n| "tester#{n}@example.com" }
-    password { "password" }
+    #Use Faker to generate random and unique data.
+    email { Faker::Internet.unique.email }
+    password { 'password123' }
+    password_confirmation { 'password123' }
   end
 end

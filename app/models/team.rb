@@ -29,22 +29,22 @@ class Team < ApplicationRecord
 
   def generate_player_name
     first_names = [
-      'John', 'Jack', 'Paul', 'Mark', 'Adam', 'Liam', 'Noah', 'Ryan', 'Eric', 'Alan',
+      'John', 'Jack', 'Paul', 'Mark', 'Adam', 'Beto', 'Noah', 'Ryan', 'Eric', 'Alan',
       'Alex', 'Bill', 'Carl', 'Dave', 'Dean', 'Evan', 'Fred', 'Gary', 'Glen', 'Hugo',
-      'Ivan', 'Jake', 'Joel', 'Josh', 'Kyle', 'Leon', 'Luke', 'Matt', 'Mike', 'Neil',
+      'Ivan', 'Jake', 'Joel', 'Josh', 'Kyle', 'Leon', 'Luke', 'Matt', 'Mike',
       'Nick', 'Owen', 'Pete', 'Rick', 'Sean', 'Seth', 'Tony', 'Troy', 'Will', 'Zack',
       'Ben', 'Dan', 'Joe', 'Tom', 'Max', 'Sam', 'Roy', 'Leo', 'Ian', 'Cole', 'Noa',
       'Enzo', 'Luan', 'Gael', 'Ravi', 'Otto', 'José', 'João', 'Caio', 'Raul', 'Yuri',
-      'Juan', 'Jair', 'Tito', 'Saul', 'Iago', 'Eder', 'Igor', 'Alan'
+      'Juan', 'Jair', 'Tito', 'Saul', 'Iago', 'Eder', 'Igor', 'Gil', 'Ed'
     ]
     last_names = [
-      'Bell', 'Bond', 'Bush', 'Best', 'Bird', 'Cruz', 'Cook', 'Cox', 'Cole', 'Carr',
-      'Clay', 'Day', 'Dean', 'Dunn', 'Dye', 'Ford', 'Fox', 'Fry', 'Gray', 'Gill',
-      'Hall', 'Hill', 'Hunt', 'Hart', 'Hood', 'Holt', 'King', 'Kent', 'Kerr', 'Lee',
-      'Lane', 'Long', 'Law', 'Lamb', 'Lowe', 'May', 'Mann', 'Moon', 'Moss', 'Nash',
+      'Bell', 'Bond', 'Bush', 'Best', 'Bird', 'Cruz', 'Cook', 'Cox', 'Cole',
+      'Clay', 'Dean', 'Dias', 'Dunn', 'Ford', 'Fox', 'Fry', 'Gray',
+      'Hall', 'Hill', 'Hunt', 'Hart', 'Hood', 'Holt', 'King', 'Kent', 'Lee',
+      'Lane', 'Long', 'Law', 'Lamb', 'Lowe', 'Moon', 'Moss', 'Nash', 'Ruas',
       'Park', 'Page', 'Pope', 'Reed', 'Rosa', 'Ross', 'Rice', 'Shaw', 'Snow', 'Ward',
       'Wood', 'West', 'Webb', 'Wolf', 'York', 'Braz', 'Reis', 'Lima', 'Lobo', 'Rios',
-      'Melo', 'Rosa', 'Paes', 'Pena', 'Sena', 'Mota', 'Gama', 'Lins'
+      'Melo', 'Rosa', 'Paes', 'Pena', 'Sena', 'Mota', 'Gama', 'Lins',
     ]
 
     loop do
