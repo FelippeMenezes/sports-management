@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Team, type: :model do
+  describe 'associations' do
+    it { should belong_to(:user).optional }
+    it { should belong_to(:campaign) }
+    it { should have_many(:players) }
+  end
+
   # lets test the instance method #create_players_for_team
   describe '#create_players_for_team' do
     # We use 'create(:team)' from FactoryBot to have a real team saved in the test database.
